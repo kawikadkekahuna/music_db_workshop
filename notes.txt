@@ -1,0 +1,21 @@
+# Don't need to create a join table if you DONT need any other metadata
+
+# on_delete: delete record when parent is deleted
+# nillify: will update all FK columns and turn them nil
+# default: raise error
+
+# Database is priority when defining delete cascade rules
+
+# Cast for external data
+# change for internal data
+
+# put_assoc -> internal data
+  # cast_assoc -> external data
+
+%Artist{}
+|> cast(params, [:name])
+|> cast_assoc(:albums)
+
+# Ecto relies on changeset on the model to turn raw maps into structs
+
+# put_assoc / cast_assoc replaces the recorded, NOT adds
